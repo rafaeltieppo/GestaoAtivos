@@ -1,14 +1,14 @@
 Sistema de Gestão de Ativos
 
-Sistema desenvolvido para controle de ativos e equipamentos utilizados em projetos e obras, permitindo registrar movimentações, gerar romaneios e acompanhar a disponibilidade dos equipamentos.
+Sistema desenvolvido para controle de ativos utilizados em projetos e obras, permitindo registrar movimentações, gerar romaneios e acompanhar a disponibilidade dos equipamentos.
 
 📋 Sobre o Projeto
 
-Este sistema foi criado com o objetivo de organizar e controlar os ativos de uma empresa, evitando perdas, duplicidade de uso e falta de rastreabilidade dos equipamentos.
+Este sistema foi criado com o objetivo de organizar e controlar os ativos de uma empresa, evitando perdas, conflitos de uso e falta de rastreabilidade dos equipamentos.
 
-A aplicação permite cadastrar ativos, criar romaneios de saída para projetos, controlar o status de uso e registrar a devolução dos equipamentos.
+A aplicação permite cadastrar ativos, criar romaneios de saída para projetos, associar equipamentos aos romaneios e acompanhar o status de utilização.
 
-O sistema também indica automaticamente quando um ativo está disponível ou em movimentação, impedindo que ele seja utilizado em dois romaneios ao mesmo tempo.
+Também foi implementada uma lógica para verificar automaticamente se um ativo está disponível ou em movimentação, impedindo que ele seja utilizado em mais de um romaneio ao mesmo tempo.
 
 ⚙️ Funcionalidades
 
@@ -16,29 +16,45 @@ Cadastro de ativos
 
 Listagem e gerenciamento de ativos
 
-Controle de disponibilidade automática
-
-Criação de romaneios para envio de equipamentos
+Criação de romaneios
 
 Associação de múltiplos ativos a um romaneio
 
-Controle de status do romaneio:
+Controle de status do romaneio
 
-Em obra
+Controle automático de disponibilidade dos ativos
 
-Devolvido
-
-Registro automático de data de retorno
+Registro de data de retorno
 
 Exportação de romaneios em CSV
 
-Interface para seleção de ativos com busca visual
+Interface para seleção de ativos
 
-🖥️ Tecnologias Utilizadas
+🏗️ Arquitetura do Sistema
+
+O sistema foi desenvolvido utilizando uma arquitetura frontend + backend + banco de dados, separados para facilitar a manutenção e organização do projeto.
 
 Frontend
 
+O frontend foi desenvolvido utilizando React, responsável pela interface do usuário e interação com o sistema.
+
+Funções do frontend:
+
+Formulários de cadastro e edição
+
+Listagem de ativos
+
+Listagem de romaneios
+
+Seleção de ativos para romaneios
+
+Comunicação com a API backend via requisições HTTP
+
+Tecnologias utilizadas:
+
 React
+
+JavaScript
 
 Bootstrap
 
@@ -46,17 +62,40 @@ CSS
 
 Backend
 
-PHP
+O backend foi desenvolvido em PHP, funcionando como uma API REST que recebe requisições do frontend e processa os dados.
 
-API REST
+Responsabilidades do backend:
 
+Processar regras de negócio
+
+Gerenciar romaneios e ativos
+
+Controlar disponibilidade dos equipamentos
+
+Manipular dados no banco
+
+Retornar respostas em formato JSON
+
+Principais endpoints da API:
+
+/api/ativos.php
+/api/romaneios.php
+/api/movimentacoes.php
 Banco de Dados
 
-MySQL
+O banco de dados utilizado foi MySQL, executado localmente através do XAMPP.
 
-🗄️ Estrutura do Banco
+O banco armazena:
 
-Principais tabelas do sistema:
+Ativos cadastrados
+
+Romaneios
+
+Itens de cada romaneio
+
+Movimentações dos ativos
+
+Principais tabelas:
 
 ativos
 
@@ -100,34 +139,26 @@ codigo_ativo
 
 status
 
-Essa estrutura permite controlar quais ativos estão vinculados a cada romaneio e verificar se estão disponíveis.
+🔄 Controle de Disponibilidade
 
-🔄 Funcionamento da Disponibilidade
+A disponibilidade de um ativo é verificada automaticamente com base nas movimentações registradas no sistema.
 
-A disponibilidade de um ativo é verificada automaticamente através das movimentações.
+Se existir uma movimentação com status pendente, o ativo é considerado não disponível.
 
-Se existir uma movimentação com status pendente, o ativo é considerado:
+Caso contrário, o ativo é considerado disponível.
 
-não disponível
+Isso impede que um mesmo ativo seja selecionado em mais de um romaneio ao mesmo tempo.
 
-Caso contrário:
+💻 Ambiente de Desenvolvimento
 
-disponível
+Ferramentas utilizadas no desenvolvimento do projeto:
 
-Isso evita que um ativo seja selecionado em dois romaneios ao mesmo tempo.
+React
 
-📤 Exportação de Dados
+PHP
 
-O sistema permite gerar arquivos CSV contendo:
+MySQL
 
-Número do projeto
+XAMPP (Apache + MySQL)
 
-Cliente
-
-Responsável
-
-Data de saída
-
-Ativos vinculados ao romaneio
-
-Isso facilita a integração com planilhas ou sistemas externos.
+Visual Studio Code
