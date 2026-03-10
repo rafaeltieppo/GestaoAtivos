@@ -4,7 +4,7 @@ Sistema desenvolvido para controle de ativos utilizados em projetos e obras, per
 
 📋 Sobre o Projeto
 
-Este sistema foi criado com o objetivo de organizar e controlar os ativos de uma empresa, evitando perdas, conflitos de uso e falta de rastreabilidade dos equipamentos.
+Este sistema foi criado com o objetivo de organizar e controlar os ativos da empresa na qual trabalho, evitando perdas, conflitos de uso e falta de rastreabilidade dos equipamentos.
 
 A aplicação permite cadastrar ativos, criar romaneios de saída para projetos, associar equipamentos aos romaneios e acompanhar o status de utilização.
 
