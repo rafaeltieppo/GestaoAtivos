@@ -86,6 +86,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
     }
 
     // Se o status for 'devolvido', atualiza data_devolucao com CURRENT_TIMESTAMP
+    
     if ($status === 'devolvido') {
         $sql = "UPDATE movimentacoes 
                 SET status = ?, data_devolucao = CURRENT_TIMESTAMP 
